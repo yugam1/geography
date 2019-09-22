@@ -1,5 +1,5 @@
-var connection=require("tedious").Connection;
-var request = require('tedious').Request;
+var Connection=require("tedious").Connection;
+var Request = require('tedious').Request;
 var TYPES=require("tedious").TYPES;
 
 var config={

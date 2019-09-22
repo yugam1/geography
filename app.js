@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var appInsights=require("applicationinsights");
+appInsights.setup("2252c797-e9d6-45f8-a940-8a0fad0e2da4");
+appInsights.start();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -32,6 +36,8 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  appInsights.defaultClient.trackException({exception:err});
 
   // render the error page
   res.status(err.status || 500);
